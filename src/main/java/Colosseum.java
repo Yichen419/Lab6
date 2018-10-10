@@ -102,7 +102,41 @@ public class Colosseum {
      * (Look, we can return objects too!)
      */
     public static Pokemon buildPokemon() {
-        Pokemon returnPokemon = null;
+        Pokemon returnPokemon = new Pokemon();
+        System.out.println("Select from the following Pokemon types: ");
+        System.out.println("1 - Electric Pokemon");
+        System.out.println("2 - Fire Pokemon");
+        System.out.println("3 - Water Pokemon");
+        int pokeType = myScan.nextInt();
+        while (pokeType != 1 && pokeType != 2 && pokeType != 3) {
+            System.out.println("INVALID TYPES!!! Try Again!");
+            pokeType = myScan.nextInt();
+        }
+        if (pokeType == 1) {
+            returnPokemon.pokeType = Pokemon.PokemonType.ELECTRIC;
+        } else if (pokeType == 2) {
+            returnPokemon.pokeType = Pokemon.PokemonType.FIRE;
+        } else if (pokeType == 3) {
+            returnPokemon.pokeType = Pokemon.PokemonType.WATER;
+        }
+        System.out.println("Please name your Pokemon");
+        String pokeName = myScan.next();
+        returnPokemon.setName(pokeName);
+        System.out.println("How many hit points will it have? (1-50)");
+        int pokeHP = myScan.nextInt();
+        while (pokeHP > MAX_HIT_POINTS || pokeHP < 1) {
+            System.out.println("INVALID HP!!! Please Try Again!!!");
+            pokeHP = myScan.nextInt();
+        }
+        returnPokemon.setHitPoints(pokeHP);
+        System.out.println("Please Enter Your Attack Level");
+        int pokeAtk = myScan.nextInt();
+        while (pokeAtk > MAX_HIT_POINTS - 1 || pokeAtk < 1) {
+            System.out.println("INVALID ATK!!! Please Try Again!!!");
+            pokeAtk = myScan.nextInt();
+        }
+        returnPokemon.setAttackLevel(pokeAtk);
+        returnPokemon.setDefenseLevel(MAX_HIT_POINTS - pokeAtk);
         return returnPokemon;
     }
 
